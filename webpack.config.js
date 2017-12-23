@@ -3,6 +3,7 @@ const PATHS = {
     app: path.resolve(__dirname, 'app'),
     build: path.resolve(__dirname, 'build')
 };
+
 module.exports = {
     entry: {
         app: PATHS.app + '/index.js'
@@ -19,7 +20,8 @@ module.exports = {
             },
             {
                 test: /\.js?/,
-                loader: 'babel-loader'
+                exclude: /node_modules/,
+                loader: 'babel-loader',
             },
             {
                 test: /\.png$/,
@@ -50,5 +52,10 @@ module.exports = {
     devServer: {
         host: '127.0.0.1',
         port: 4444,
-    }
+    },
+    resolve: {
+        alias: {
+            'react-easy-chart': path.join(__dirname, '/node_modules/react-easy-chart/', 'modules')
+        }
+    },
 };
